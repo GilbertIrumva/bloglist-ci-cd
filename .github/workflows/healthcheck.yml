@@ -21,3 +21,4 @@ jobs:
           url: ${{ inputs.check_url || secrets.RENDER_HEALTH_URL || 'https://bloglist-cicd.onrender.com/health' }}
           max-attempts: 3
           retry-delay: 5s
+

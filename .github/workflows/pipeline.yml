@@ -30,8 +30,10 @@ jobs:
       - name: Test
         run: npm test
       - name: Discord Notification (Build Failure)
+        if: ${{ failure() && env.DISCORD_WEBHOOK != '' }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: sarisia/actions-status-discord@v1
-        if: ${{ failure() }}
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: failure
@@ -45,7 +47,15 @@ jobs:
     if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
     steps:
       - name: Trigger deployment
-        run: curl ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        env:
+          DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -n "$DEPLOY_HOOK" ]; then
+            echo "Deploying to Render..."
+            curl "$DEPLOY_HOOK"
+          else
+            echo "No RENDER_DEPLOY_HOOK_URL set. Skipping external deploy trigger."
+          fi
 
   tag_release:
     needs: [deploy]
@@ -65,10 +75,13 @@ jobs:
     if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
     steps:
       - name: Discord Notification (Deployment Success)
+        if: ${{ env.DISCORD_WEBHOOK != '' }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
           title: "A new version of Bloglist deployed"
-          description: "deployed successfully by ${{ github.actor }}"
+          description: "pipeline completed successfully by ${{ github.actor }}"
           color: 0x00FF00
