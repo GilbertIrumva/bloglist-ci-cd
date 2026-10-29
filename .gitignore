@@ -1,0 +1,15 @@
+node_modules
+frontend/node_modules
+.env
+dist
+frontend/dist
+dist-ssr
+coverage
+test-results
+playwright-report
+blob-report
+.playwright
+*.log
+nul
+.DS_Store
+

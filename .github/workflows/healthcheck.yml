@@ -1,0 +1,23 @@
+name: Periodic health check
+
+on:
+  schedule:
+    # Runs every 24 hours at midnight UTC to save GitHub Action minutes
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      check_url:
+        description: 'URL to ping'
+        required: false
+        default: ''
+
+jobs:
+  periodic_health_check:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: ${{ inputs.check_url || secrets.RENDER_HEALTH_URL || 'https://bloglist-cicd.onrender.com/health' }}
+          max-attempts: 3
+          retry-delay: 5s

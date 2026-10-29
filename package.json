@@ -1,0 +1,37 @@
+{
+  "name": "bloglist-cicd",
+  "version": "1.0.0",
+  "description": "Full Stack Open Part 11 CI/CD Bloglist Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev:server": "cross-env NODE_ENV=development node --watch index.js",
+    "dev:ui": "npm run dev --prefix frontend",
+    "build:ui": "npm run build --prefix frontend",
+    "build": "npm run build:ui",
+    "lint:server": "eslint .",
+    "lint:ui": "npm run lint --prefix frontend",
+    "lint": "npm run lint:server && npm run lint:ui",
+    "test:server": "cross-env NODE_ENV=test node --test tests/list_helper.test.js tests/reverse.test.js tests/average.test.js",
+    "test:ui": "npm run test --prefix frontend",
+    "test": "npm run test:server && npm run test:ui",
+    "test:all": "cross-env NODE_ENV=test node --test && npm run test:ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.6.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.0",
+    "supertest": "^7.2.2"
+  }
+}
