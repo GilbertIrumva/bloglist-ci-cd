@@ -36,6 +36,9 @@ The GitHub Actions pipeline is configured with:
 - **Live URL**: [https://bloglist-ci-cd-1e4j.onrender.com/](https://bloglist-ci-cd-1e4j.onrender.com/)
 - **Health Check**: [https://bloglist-ci-cd-1e4j.onrender.com/health](https://bloglist-ci-cd-1e4j.onrender.com/health)
 
+## Branch Protection (Exercise 11.22)
+- The `main` branch is protected requiring pull request reviews before merging (including administrators).
+
 ## Scripts
 
 ### Setup
