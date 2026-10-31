@@ -2,6 +2,8 @@
 
 This repository contains the full-stack Bloglist application with a complete CI/CD pipeline built for **Full Stack Open Part 11 (Exercises 11.21 & 11.22)**.
 
+- **Main Part 11 Repository (Exercises 11.1 - 11.19)**: [https://github.com/GilbertIrumva/fullstackopen-part11](https://github.com/GilbertIrumva/fullstackopen-part11)
+
 ## Architecture
 
 - **Backend (Root)**: Node.js & Express REST API with MongoDB/Mongoose.
