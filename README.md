@@ -31,8 +31,8 @@ The GitHub Actions pipeline is configured with:
 
 ## Deployed Application
 
-- **Live URL**: *(Configured on Render)*
-- **Health Check**: `https://<your-service>.onrender.com/health`
+- **Live URL**: [https://bloglist-ci-cd-1e4j.onrender.com/](https://bloglist-ci-cd-1e4j.onrender.com/)
+- **Health Check**: [https://bloglist-ci-cd-1e4j.onrender.com/health](https://bloglist-ci-cd-1e4j.onrender.com/health)
 
 ## Scripts
 

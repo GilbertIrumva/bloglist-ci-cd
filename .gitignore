@@ -12,4 +12,6 @@ blob-report
 *.log
 nul
 .DS_Store
+.vscode
+
 
